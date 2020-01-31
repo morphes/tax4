@@ -1,0 +1,21 @@
+parameters:
+  locale: 'en'
+  api_source_url: 'http://212.224.112.28/data.json'
+  file_source_path: '/datasource/incomes.json'
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  App\:
+    resource: '../src/*'
+    exclude: '../src/{Entity,Migrations,Tests}'
+
+  App\Controller\:
+    resource: '../src/Controller'
+    tags: ['controller.service_arguments']
+
+  App\DataFixtures\:
+    resource: '../src/DataFixtures'
+    tags: [doctrine.fixture.orm]

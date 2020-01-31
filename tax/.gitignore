@@ -1,0 +1,7 @@
+.idea
+vendor
+var
+docker/main_db/*
+docker/test_db/*
+bin/.phpunit
+composer.lock

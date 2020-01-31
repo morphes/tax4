@@ -1,0 +1,6 @@
+<h1>Countries:</h1>
+{% for country in countries %}
+    <a href="{{ path('country', {'id': country.id}) }}">
+        <h2>{{ country.name }}</h2>
+    </a>
+{% endfor %}

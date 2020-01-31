@@ -1,0 +1,59 @@
+version: '3.3'
+services:
+    php:
+        build: ./docker/php-fpm
+        ports:
+            - '9000:9000'
+        volumes:
+            - ${PWD}:/var/www/tax
+        links:
+            - main_db
+            - test_db
+        networks:
+            main:
+                aliases:
+                    - php
+    nginx:
+        build: ./docker/nginx
+        ports:
+            - '9008:9008'
+        depends_on:
+            - php
+        volumes:
+            - ${PWD}:/var/www/tax
+        networks:
+            main:
+                aliases:
+                    - nginx
+
+    main_db:
+        image: mariadb:latest
+        ports:
+          - "8181:3306"
+        volumes:
+          - ./docker/main_db:/var/lib/mysql
+        environment:
+          - MYSQL_ROOT_PASSWORD=root
+          - MYSQL_DATABASE=tax
+          - MYSQL_USER=root
+        networks:
+            main:
+                aliases:
+                    - main_db
+
+    test_db:
+        image: mariadb:latest
+        ports:
+            - "8282:3306"
+        volumes:
+            - ./docker/test_db:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=tax_test
+            - MYSQL_USER=root
+        networks:
+            main:
+                aliases:
+                    - test_db
+networks:
+    main:
