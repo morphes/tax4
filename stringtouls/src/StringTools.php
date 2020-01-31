@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class StringTouls
+ * Class StringTools
  */
-class StringTouls
+class StringTools
 {
     /**
      * @var string
@@ -11,7 +11,7 @@ class StringTouls
     private $string;
 
     /**
-     * StringTouls constructor.
+     * StringTools constructor.
      *
      * @param string $string
      */
