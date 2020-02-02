@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Service;
 
@@ -30,18 +31,18 @@ class DataSource
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getMethod()
+    public function getMethod(): string
     {
         return $this->method;
     }
 
     /**
-     * @param $method
+     * @param string $method
      * @return DataSource
      */
-    public function setMethod($method): self
+    public function setMethod(string $method): self
     {
         $this->method = $method;
         return $this;

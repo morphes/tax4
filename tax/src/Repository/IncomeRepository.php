@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Repository;
 
@@ -42,7 +43,7 @@ class IncomeRepository extends ServiceEntityRepository
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function totalsByState(State $state, $sqlMethod = 'SUM')
+    public function totalsByState(State $state, $sqlMethod = 'SUM'): string
     {
         if(!in_array($sqlMethod, self::METHODS)) {
             throw new \InvalidArgumentException(

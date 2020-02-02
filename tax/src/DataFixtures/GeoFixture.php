@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\DataFixtures;
 
@@ -74,7 +75,7 @@ class GeoFixture extends Fixture
     /**
      * @param ObjectManager $manager
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $this->manager = $manager;
         $methodName    = 'load' . ucfirst($this->kernel->getEnvironment()) . 'Data';
@@ -86,7 +87,7 @@ class GeoFixture extends Fixture
     /**
      * @throws \Exception
      */
-    private function loadDevData()
+    private function loadDevData(): void
     {
         $randSourceType = rand(0, count(self::DATA_TYPE_SOURCES) - 1);
 
@@ -122,7 +123,7 @@ class GeoFixture extends Fixture
     /**
      * @param array $data
      */
-    private function loadDataToDb(array $data)
+    private function loadDataToDb(array $data): void
     {
         foreach (array_keys($data) as $countryName) {
 
@@ -142,7 +143,7 @@ class GeoFixture extends Fixture
                     $county = new County();
                     $county->setName($sourceCounty);
                     $county->setState($state);
-                    $county->setTaxRate($dataCounty['tax_rate']);
+                    $county->setTaxRate(floatval($dataCounty['tax_rate']));
                     $this->manager->persist($county);
                     $this->manager->flush();
 
@@ -150,7 +151,7 @@ class GeoFixture extends Fixture
 
                         $income = new Income();
                         $income->setCounty($county);
-                        $income->setAmount($incomeAmount);
+                        $income->setAmount(floatval($incomeAmount));
                         $this->manager->persist($income);
 
                     }
@@ -163,7 +164,7 @@ class GeoFixture extends Fixture
     /**
      * Load data for testing purposes
      */
-    private function loadTestData()
+    private function loadTestData(): void
     {
         $testSources = RandomGeoSource::DEV_SOURCES;
 
@@ -185,7 +186,7 @@ class GeoFixture extends Fixture
                     $county = new County();
                     $county->setName($sourceCounty);
                     $county->setState($state);
-                    $county->setTaxRate($sourceTaxRate);
+                    $county->setTaxRate(floatval($sourceTaxRate));
                     $this->manager->persist($county);
 
                 }
@@ -204,7 +205,7 @@ class GeoFixture extends Fixture
                 $income = new Income();
                 $income->setCounty($county);
                 $stepIncome += $stepIncome;
-                $income->setAmount($stepIncome);
+                $income->setAmount(floatval($stepIncome));
                 $this->manager->persist($income);
 
             }

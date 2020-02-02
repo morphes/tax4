@@ -1,4 +1,6 @@
 <?php
+declare(strict_types = 1);
+
 namespace App\Service\ApiManager;
 
 use Symfony\Component\HttpClient\HttpClient;
@@ -11,7 +13,7 @@ use Symfony\Component\HttpClient\HttpClient;
 class ApiManager implements ApiManagerInterface
 {
     /**
-     * @var
+     * @var string
      */
     private $method = 'GET';
 
@@ -33,7 +35,7 @@ class ApiManager implements ApiManagerInterface
     /**
      * @return mixed
      */
-    public function getMethod()
+    public function getMethod(): string
     {
         return $this->method;
     }
@@ -42,7 +44,7 @@ class ApiManager implements ApiManagerInterface
      * @param $method
      * @return ApiManager
      */
-    public function setMethod($method): self
+    public function setMethod(string $method): self
     {
         $this->method = $method;
         return $this;
@@ -51,7 +53,7 @@ class ApiManager implements ApiManagerInterface
     /**
      * @return mixed
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->url;
     }
@@ -60,7 +62,7 @@ class ApiManager implements ApiManagerInterface
      * @param $url
      * @return ApiManager
      */
-    public function setUrl($url): self
+    public function setUrl(string $url): self
     {
         $this->url = $url;
         return $this;
@@ -69,7 +71,7 @@ class ApiManager implements ApiManagerInterface
     /**
      * @return mixed
      */
-    public function getHeaders()
+    public function getHeaders(): ?array
     {
         return $this->headers;
     }
@@ -78,7 +80,7 @@ class ApiManager implements ApiManagerInterface
      * @param $headers
      * @return ApiManager
      */
-    public function setHeaders($headers): self
+    public function setHeaders(array $headers): self
     {
         $this->headers = $headers;
         return $this;
@@ -87,7 +89,7 @@ class ApiManager implements ApiManagerInterface
     /**
      * @return mixed
      */
-    public function getContent()
+    public function getContent(): ?string
     {
         return $this->content;
     }
@@ -96,16 +98,16 @@ class ApiManager implements ApiManagerInterface
      * @param $content
      * @return ApiManager
      */
-    public function setContent($content): self
+    public function setContent(string $content): self
     {
         $this->content = $content;
         return $this;
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getData()
+    public function getData(): string
     {
         $httpClient = HttpClient::create();
         $response = $httpClient->request(

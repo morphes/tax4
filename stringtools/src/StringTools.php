@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 /**
  * Class StringTools
@@ -21,82 +22,66 @@ class StringTools
     }
 
     /**
-     * @param string $a
-     * @param string $b
+     * @return StringTools
+     */
+    public function toUpperCase(): self
+    {
+        $this->string = strtoupper($this->string);
+        return $this;
+    }
+
+    /**
+     * @return StringTools
+     */
+    public function toLowerCase(): self
+    {
+        $this->string = strtolower($this->string);
+        return $this;
+    }
+
+    /**
+     * @param string $algorithm
      * @return string
      */
-    public static function concat(string $a, string $b): string
+    public function hash(string $algorithm): string
     {
-        return $a . $b;
+        return hash($algorithm, $this->string);
+    }
+
+    /**
+     * @param array $parts
+     * @return string
+     */
+    public static function concatenate(array $parts): string
+    {
+        return implode('', $parts);
+    }
+
+    /**
+     * @param string $needle
+     * @param string $replace
+     * @param string $haystack
+     * @return string
+     */
+    public static function replace(string $needle, string $replace, string $haystack): string
+    {
+        return str_replace($needle, $replace, $haystack);
+    }
+
+    /**
+     * @return StringTools
+     */
+    public function trim(): self
+    {
+        $this->string = trim($this->string);
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function toUpperCase(): string
+    public function __toString()
     {
-        return strtoupper($this->string);
-    }
-
-    /**
-     * @return string
-     */
-    public function toLowerCase(): string
-    {
-        return strtolower($this->string);
-    }
-
-    /**
-     * @return string
-     */
-    public function hash(): string
-    {
-        return md5($this->string);
-    }
-
-    /**
-     * @return string
-     */
-    public function md5(): string
-    {
-        return md5($this->string);
-    }
-
-    /**
-     * @return string
-     */
-    public function sha512(): string
-    {
-        return hash('sha512', $this->string);
-    }
-
-    /**
-     * @param string $a
-     * @param string $b
-     * @param string $c
-     * @return string
-     */
-    public static function concatenate(string $a, string $b, string $c): string
-    {
-        return $a . $b . $c;
-    }
-
-    /**
-     * @param string $a Needle to search for
-     * @param string $b Replace - value to replace the needle
-     * @param string $c Haystack - string to search the needle in
-     * @return string
-     */
-    public static function replace(string $a, string $b, string $c): string
-    {
-        return str_replace($a, $b, $c);
-    }
-
-    /**
-     * @return string
-     */
-    public function trim(): string
-    {
-        return trim($this->string);
+        return $this->string;
     }
 }

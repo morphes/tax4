@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Entity;
 
@@ -77,7 +78,7 @@ class County
         return $this->tax_rate;
     }
 
-    public function setTaxRate(string $tax_rate): self
+    public function setTaxRate(float $tax_rate): self
     {
         $this->tax_rate = $tax_rate;
 

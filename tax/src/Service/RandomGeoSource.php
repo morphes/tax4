@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Service;
 
@@ -99,7 +100,7 @@ class RandomGeoSource
     /**
      * @return array
      */
-    public function generateRandomData()
+    public function generateRandomData(): array
     {
         $data = self::SOURCES;
 

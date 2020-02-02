@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Service;
 
@@ -10,11 +11,11 @@ namespace App\Service;
 class DataSourceFactory
 {
     /**
-     * @param $method
+     * @param string $method
      * @return mixed
      * @throws \Exception
      */
-    public static function create($method)
+    public static function create(string $method)
     {
         $dataSource = new DataSource();
         return $dataSource->setMethod($method)->getInstance();

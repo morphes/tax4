@@ -1,4 +1,6 @@
 <?php
+declare(strict_types = 1);
+
 namespace App\Service\FileManager;
 
 /**
@@ -14,28 +16,28 @@ class FileManager implements FileManagerInterface
     private $path;
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path;
     }
 
     /**
-     * @param $path
+     * @param string $path
      * @return FileManager
      */
-    public function setPath($path): self
+    public function setPath(string $path): self
     {
         $this->path = $path;
         return $this;
     }
 
     /**
-     * @return false|mixed|string
+     * @return string
      * @throws \Exception
      */
-    public function getData()
+    public function getData(): string
     {
         if(file_exists($this->getPath())) {
             return file_get_contents($this->getPath());

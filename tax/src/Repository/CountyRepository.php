@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Repository;
 
@@ -44,7 +45,7 @@ class CountyRepository extends ServiceEntityRepository
      * @param State $state
      * @return string
      */
-    public function countiesByStateDql(State $state)
+    public function countiesByStateDql(State $state): string
     {
         return $this->createQueryBuilder('c')
             ->select('c.id')
@@ -56,7 +57,7 @@ class CountyRepository extends ServiceEntityRepository
      * @param State $state
      * @return mixed
      */
-    public function averageTaxPerState(State $state)
+    public function averageTaxPerState(State $state): string
     {
         return $this->createQueryBuilder('c')->select('AVG(c.tax_rate)')
             ->where(
@@ -71,7 +72,7 @@ class CountyRepository extends ServiceEntityRepository
      * @param Country $country
      * @return mixed
      */
-    public function averageTaxPerCountry(Country $country)
+    public function averageTaxPerCountry(Country $country): string
     {
         $query = $this->createQueryBuilder('c');
         return $query->select('AVG(c.tax_rate)')

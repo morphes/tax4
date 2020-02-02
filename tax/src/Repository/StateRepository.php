@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Repository;
 
@@ -29,7 +30,7 @@ class StateRepository extends ServiceEntityRepository
      * @param Country $country
      * @return string
      */
-    public function statesByCountryDql(Country $country)
+    public function statesByCountryDql(Country $country): string
     {
         return $this->createQueryBuilder('s')
             ->select('s.id')

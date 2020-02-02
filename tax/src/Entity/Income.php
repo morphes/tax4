@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Entity;
 
@@ -36,7 +37,7 @@ class Income
         return $this->amount;
     }
 
-    public function setAmount(string $amount): self
+    public function setAmount(float $amount): self
     {
         $this->amount = $amount;
 

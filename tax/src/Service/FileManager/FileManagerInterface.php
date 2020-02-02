@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Service\FileManager;
 
@@ -10,10 +11,10 @@ namespace App\Service\FileManager;
 interface FileManagerInterface
 {
     /**
-     * @param $method
+     * @param string $method
      * @return mixed
      */
-    public function setPath($method);
+    public function setPath(string $method);
 
     /**
      * @return mixed
